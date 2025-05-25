@@ -1,0 +1,5 @@
+export * from './human-resources/points/points-validator'
+export * from './incidents/incidents/incidents-validator'
+export * from './intranet-sys/news/news-validator'
+export * from './intranet-sys/env/env-validator'
+export * from './intranet-sys/users/users-validator'

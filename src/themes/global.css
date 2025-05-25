@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+	--color-black9: #000000;
+
+	--color-white9: #ffffff;
+
+	--color-gray9: #707070;
+	--color-gray8: #dddddd;
+	--color-gray7: #eeeeee;
+	--color-gray6: #b0bec5;
+
+	--color-blue9: #1a435a;
+	--color-blue8: #2a6ac2;
+
+	--color-green9: #33a561;
+
+	--color-yellow9: #c6b523;
+
+	--color-red9: #ff0000;
+}
+
+html {
+	font-family: "Poppins", Arial, Helvetica, sans-serif;
+	scroll-behavior: smooth;
+
+	@media (max-width: 1024px) {
+		font-size: 93.75%;
+	}
+	@media (max-width: 768px) {
+		font-size: 87.5%;
+	}
+}
+
+th {
+	text-align: start;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+::-webkit-scrollbar-track {
+	background: #dddddd;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 0.5rem;
+	background: #707070;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #000000;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+&::-webkit-calendar-picker-indicator {
+	display: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.file-inputs label {
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+
+	font-size: 0.9rem;
+	font-weight: 400;
+	padding: 0.6rem 0 0.4rem 0;
+	border-radius: 0.5rem;
+}
+.file-inputs input {
+	display: none;
+}
