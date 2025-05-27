@@ -1,4 +1,5 @@
 export * from './human-resources'
 export * from './incidents-requests'
 export * from './news-requests'
+export * from './points-requests'
 export * from './users-requests'
