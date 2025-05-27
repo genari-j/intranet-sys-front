@@ -46,7 +46,7 @@ export async function updateNew({
 	formData.append('flag_name', data.flag_name)
 	if (data.avatar && data.avatar[0] instanceof File) formData.append('avatar', data.avatar[0])
 
-	const response = await api.post<ApiResponse<NewsBaseResponse>>(`/news/${id}`, formData)
+	const response = await api.put<ApiResponse<NewsBaseResponse>>(`/news/${id}`, formData)
 	return response.data
 }
 
