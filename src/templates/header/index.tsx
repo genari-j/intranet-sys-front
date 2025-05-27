@@ -23,7 +23,7 @@ export const Header = () => {
 					<nav>
 						<ul className="flex gap-4">
 							<li>
-								<NavLink to="/">Início</NavLink>
+								<NavLink to="/">Notícias</NavLink>
 							</li>
 							{funScreens && (
 								<li>
@@ -55,9 +55,13 @@ export const Header = () => {
 										{userInfos?.name.split(' ')[0]}
 									</span>
 
-									<NavLink to="/notificacoes">
+									<NavLink to="/notificacoes" className="relative">
 										<Bell />
-										<span>{unreadCount}</span>
+										{unreadCount > 0 && (
+											<span className="h-[22px] w-[22px] flex justify-center items-center absolute top-[-0.6rem] right-[-0.6rem] text-[13px] p-1 text-white9 bg-blue8 rounded-full">
+												{unreadCount}
+											</span>
+										)}
 									</NavLink>
 								</>
 							)}
