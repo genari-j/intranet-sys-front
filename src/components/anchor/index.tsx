@@ -9,7 +9,7 @@ export function NavLink({ className, ...props }: NavLinkProps) {
 	const { pathname } = useLocation()
 
 	const combinedClassName = twMerge(
-		'flex items-center gap-1.5 font-medium transition-colors hover:text-gray9 data-[current=true]:text-red9',
+		'flex items-center gap-1.5 font-medium transition-colors hover:text-gray9 data-[current=true]:text-blue8',
 		className,
 	)
 
