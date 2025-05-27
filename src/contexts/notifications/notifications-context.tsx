@@ -1,16 +1,13 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-
-import { env } from '~/validators'
 import { io, type Socket } from 'socket.io-client'
+import { useQuery } from '@tanstack/react-query'
+
+import { getNotifications } from '~/api'
+import type { Notification } from '~/@types'
+import { env } from '~/validators'
 
 interface NotificationsProviderProps {
 	children: React.ReactNode
-}
-
-interface Notification {
-	title: string
-	description: string
-	userId: string
 }
 
 interface NotificationContextType {
@@ -26,15 +23,20 @@ const NotificationContext = createContext<NotificationContextType>({
 export const useNotification = () => useContext(NotificationContext)
 
 export const NotificationProvider = ({ children }: NotificationsProviderProps) => {
-	const [notifications, setNotifications] = useState<Notification[]>([])
+	const { data } = useQuery({
+		queryKey: ['notifications'],
+		queryFn: () => getNotifications({ page: 1, read: false, limit: 1000 }),
+	})
+
 	const [_socket, setSocket] = useState<Socket | null>(null)
+	const [realtimeNotifications, setRealtimeNotifications] = useState<Notification[]>([])
 
 	useEffect(() => {
 		const socketInstance = io(env.VITE_API_URL as string)
 		setSocket(socketInstance)
 
 		socketInstance.on('notification', (data: Notification) => {
-			setNotifications((prev) => [data, ...prev])
+			setRealtimeNotifications((prev) => [data, ...prev])
 		})
 
 		return () => {
@@ -42,11 +44,13 @@ export const NotificationProvider = ({ children }: NotificationsProviderProps) =
 		}
 	}, [])
 
+	const allNotifications = [...(data?.body?.payload?.data ?? []), ...realtimeNotifications]
+
 	return (
 		<NotificationContext.Provider
 			value={{
-				notifications,
-				unreadCount: notifications.length,
+				notifications: allNotifications,
+				unreadCount: allNotifications.length,
 			}}
 		>
 			{children}
