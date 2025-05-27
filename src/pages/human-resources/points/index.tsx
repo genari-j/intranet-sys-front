@@ -16,7 +16,7 @@ export const Points = () => {
 	const [page, setPage] = useState(1)
 
 	const { data, isPending, isError, isSuccess, refetch } = useQuery({
-		queryKey: ['points'],
+		queryKey: ['points', page],
 		queryFn: () => getPoints(page),
 	})
 
