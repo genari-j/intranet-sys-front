@@ -1,7 +1,9 @@
 import { format, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 
-export const formatDate = (date: Date) => {
+export const formatDate = (dateInput: Date | string) => {
+	const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput
+
 	const publishedDateFormatted = format(date, "dd 'de' LLLL 'de' yyyy 'às' HH:mm'h'", { locale: ptBR })
 	const publishedRelativeToNow = formatDistanceToNow(date, { locale: ptBR, addSuffix: true })
 	const isoString = date.toISOString()
