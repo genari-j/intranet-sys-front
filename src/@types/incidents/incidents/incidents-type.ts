@@ -13,33 +13,28 @@ export interface IncidentBaseResponse {
 
 export interface Incident {
 	id: string
+	code: number
+	active: boolean
+	deadline: Date | null
 	title: string
 	description: string
-	department: {
+	register: { id: string; name: string }
+	category: { id: string; name: string }
+	priority: { id: string; name: string }
+	department: { id: string; name: string }
+	assigned: { id: string; name: string }
+	status: { id: string; name: string }
+	avatars: {
 		id: string
-		name: string
-	}
-	priority: {
+		avatar: string
+	}[]
+	logs: {
 		id: string
-		name: string
-	}
-	status: {
-		id: number
-		name: string
-	}
-	category: {
-		id: string
-		name: string
-	}
-	assigned?: {
-		id: string
-		name: string
-	}
-	deadline?: Date | null
-	active: boolean
+		title: string
+		description: string
+	}[]
 	created_at: Date
 	updated_at: Date
-	deleted_at: Date | null
 }
 
 export type CreateIncidentsBody = {
@@ -51,12 +46,13 @@ export type CreateIncidentsBody = {
 }
 
 export interface GetIncidentsResponse {
-	payload: Incident[]
-	error: boolean
-	limit: number
-	currentPage: number
-	pages: number
-	total: number
+	data: Incident[]
+	pagination: {
+		limit: number
+		currentPage: number
+		pages: number
+		total: number
+	}
 }
 
 export interface GetIncidentResponse {
