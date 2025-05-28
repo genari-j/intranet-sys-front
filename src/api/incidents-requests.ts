@@ -8,13 +8,29 @@ import type {
 	IncidentBaseResponse,
 } from '~/@types'
 
-export async function getIncidents(page = 1) {
-	const queryParams = new URLSearchParams({
-		page: String(page),
-	})
+type IncidentsParams = {
+	page?: number
+	limit?: number
+	code?: string
+	status_id?: string
+	priority_id?: string
+	assigned_id?: string
+	created_at?: Date
+}
 
-	const response = await api.get<ApiResponse<GetIncidentsResponse>>(`/incidents?${queryParams}`)
-	return response
+export async function getIncidents(params: IncidentsParams) {
+	const queryParams = new URLSearchParams()
+
+	if (params.page) queryParams.append('page', String(params.page))
+	if (params.limit) queryParams.append('limit', String(params.limit))
+	if (params.code !== undefined) queryParams.append('code', String(params.code))
+	if (params.status_id !== undefined) queryParams.append('status_id', String(params.status_id))
+	if (params.priority_id !== undefined) queryParams.append('priority_id', String(params.priority_id))
+	if (params.assigned_id !== undefined) queryParams.append('assigned_id', String(params.assigned_id))
+	if (params.created_at !== undefined) queryParams.append('created_at', String(params.created_at))
+
+	const response = await api.get<ApiResponse<GetIncidentsResponse>>(`/incidents?${queryParams.toString()}`)
+	return response.data
 }
 
 export async function getIncidentById(id: string) {
