@@ -16,6 +16,7 @@ export const router = createBrowserRouter([
 					{ path: '/entrar', element: <Pages.SignIn /> },
 					{ path: '/', element: <Pages.News /> },
 					{ path: '/sistemas/noticias/:id', element: <Pages.NewsManagement /> },
+					{ path: '/sistemas/chamados/:id', element: <Pages.IncidentManagement /> },
 				],
 			},
 			{
