@@ -14,6 +14,16 @@ export interface IncidentBaseResponse {
 export interface Incident {
 	id: string
 	code: number
+	title: string
+	priority: { id: string; name: string }
+	assigned: { id: string; name: string }
+	status: { id: string; name: string }
+	created_at: Date
+}
+
+export interface IncidentById {
+	id: string
+	code: number
 	active: boolean
 	deadline: Date | null
 	title: string
@@ -56,5 +66,5 @@ export interface GetIncidentsResponse {
 }
 
 export interface GetIncidentResponse {
-	payload: Incident
+	payload: IncidentById
 }
