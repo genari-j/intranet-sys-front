@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
-import { createPoint, getPoints } from '~/api'
+import { createPoint, getPoints } from '~/api/points-requests'
 import { pageTitle, pointsTable, dateFormatter, timeFormatter, responseStatus } from '~/helpers'
 import type { Points as PointsType } from '~/@types'
 

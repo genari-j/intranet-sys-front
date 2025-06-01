@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { getNewsFlags, getNewById, updateNew } from '~/api'
+import { getNewsFlags, getNewById, updateNew } from '~/api/news-requests'
 import { usePermissions } from '~/hooks'
 import { newsRegister, pageTitle, handleBlur, handleFocus, responseStatus } from '~/helpers'
 

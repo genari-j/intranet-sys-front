@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { io, type Socket } from 'socket.io-client'
 import { useQuery } from '@tanstack/react-query'
 
-import { getNotifications } from '~/api'
+import { getNotifications } from '~/api/notifications-requests'
 import type { Notification } from '~/@types'
 import { env } from '~/validators'
 

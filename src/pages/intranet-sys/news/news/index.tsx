@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { getNews } from '~/api'
+import { getNews } from '~/api/news-requests'
 import { usePermissions, useRouting, useSession } from '~/hooks'
 import { pageTitle, dateFormatter } from '~/helpers'
 

@@ -6,7 +6,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import toast from 'react-hot-toast'
 
-import { createIncident } from '~/api'
+import { createIncident } from '~/api/incidents-requests'
 import { handleBlur, handleFocus, pageTitle, responseStatus } from '~/helpers'
 
 import type { CreateIncidentsBody } from '~/@types'

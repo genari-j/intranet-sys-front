@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { signIn } from '~/api'
+import { signIn } from '~/api/users-requests'
 import { api } from '~/api/config'
 import { useGeneralStates } from '~/hooks'
 import { config, pageTitle, responseStatus } from '~/helpers'

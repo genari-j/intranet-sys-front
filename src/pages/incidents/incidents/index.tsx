@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { getIncidents } from '~/api'
+import { getIncidents } from '~/api/incidents-requests'
 import { useRouting } from '~/hooks'
 
 import { pageTitle, reduceString, incidentsTbTitle, setLineColor, dateFormatter } from '~/helpers'

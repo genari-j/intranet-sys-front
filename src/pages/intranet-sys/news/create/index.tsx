@@ -6,7 +6,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import toast from 'react-hot-toast'
 
-import { createNew, getNewsFlags } from '~/api'
+import { createNew, getNewsFlags } from '~/api/news-requests'
 import { newsRegister, pageTitle, responseStatus, handleBlur, handleFocus } from '~/helpers'
 import { validateCreateNewsSchema } from '~/validators'
 import type { CreateNewsBody } from '~/@types'

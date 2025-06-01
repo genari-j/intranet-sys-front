@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getNotifications } from '~/api'
+import { getNotifications } from '~/api/notifications-requests'
 import { pageTitle, formatDate } from '~/helpers'
 
 import { Pagination, RequestError, Spinner, Title } from '~/components'

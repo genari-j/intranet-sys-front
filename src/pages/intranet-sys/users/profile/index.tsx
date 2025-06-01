@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 
-import { getUserById } from '~/api'
+import { getUserById } from '~/api/users-requests'
 import { dateFormatter, pageTitle } from '~/helpers'
 
 import { CloudUpload } from '~/assets'
