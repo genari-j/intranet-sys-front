@@ -35,7 +35,7 @@ export const Profile = () => {
 						</li>
 						<li>
 							<Link
-								to={`/sistemas/chamados/usuario/${data.payload?.id}`}
+								to={`/sistemas/chamados/usuario/${data?.body?.payload?.id}`}
 								className="flex text-[15px] py-2 px-4 rounded-lg bg-gray7"
 							>
 								Meus Chamados
@@ -43,7 +43,7 @@ export const Profile = () => {
 						</li>
 						<li>
 							<Link
-								to={`/sistemas/compras/usuario/${data.payload?.id}`}
+								to={`/sistemas/compras/usuario/${data?.body?.payload?.id}`}
 								className="flex text-[15px] py-2 px-4 rounded-lg bg-gray7"
 							>
 								Solicitações de Compras
@@ -51,7 +51,7 @@ export const Profile = () => {
 						</li>
 						<li>
 							<Link
-								to={`/usuarios/${data.payload?.id}/alterar-minha-senha`}
+								to={`/usuarios/${data?.body?.payload?.id}/alterar-minha-senha`}
 								className="flex text-[15px] py-2 px-4 rounded-lg bg-gray7"
 							>
 								Alterar Senha
@@ -62,11 +62,11 @@ export const Profile = () => {
 
 				<section className="flex flex-col items-start gap-6">
 					<div className="flex items-center gap-4">
-						{data.payload?.avatar ? (
+						{data?.body?.payload?.avatar ? (
 							<img
-								src={data.payload?.avatar}
-								alt={data.payload?.name.split(' ')[0]}
-								title={data.payload?.name.split(' ')[0]}
+								src={data?.body?.payload?.avatar}
+								alt={data?.body?.payload?.name.split(' ')[0]}
+								title={data?.body?.payload?.name.split(' ')[0]}
 							/>
 						) : (
 							<div className="w-full file-inputs px-4 rounded duration-150 bg-gray7 hover:bg-gray8">
@@ -93,7 +93,7 @@ export const Profile = () => {
 								htmlFor="name"
 								placeholder="Benefício de Seguro de Vida para Todos"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.name}
+								defaultValue={data?.body?.payload?.name}
 								// register={register('name')}
 								// error={errors.name != null}
 								// message={errors?.name?.message}
@@ -102,8 +102,8 @@ export const Profile = () => {
 								{/* TODO: PRECISA CRIAR UMA COLUNA NO BANCO E NÃO USAR O CREATED_AT */}
 								<span>Admissão:</span>
 								<span>
-									{data.payload?.created_at !== undefined
-										? dateFormatter.format(new Date(data.payload?.created_at))
+									{data?.body?.payload?.created_at !== undefined
+										? dateFormatter.format(new Date(data?.body?.payload?.created_at))
 										: 'A Definir'}
 								</span>
 							</div>
@@ -116,14 +116,14 @@ export const Profile = () => {
 						<div>
 							<div className="w-full flex justify-between">
 								<span>Ocupação: A definir</span>
-								<span>Departamento: {data.payload?.department.name}</span>
+								<span>Departamento: {data?.body?.payload?.department.name}</span>
 							</div>
 
 							<div>
 								<span>Permissões:</span>
 
 								<div className="w-full h-screen max-h-[90px] overflow-hidden overflow-y-auto p-2 rounded-lg bg-gray7">
-									{data.payload?.profile.permissions
+									{data?.body?.payload?.profile.permissions
 										.sort((a, b) => a.permission.localeCompare(b.permission))
 										.map((p) => {
 											return (
@@ -149,7 +149,7 @@ export const Profile = () => {
 								htmlFor="contact"
 								placeholder="(11) 91234-5678"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.contact}
+								defaultValue={data?.body?.payload?.contact}
 								// register={register('contact')}
 								// error={errors.contact != null}
 								// message={errors?.contact?.message}
@@ -162,7 +162,7 @@ export const Profile = () => {
 								htmlFor="email"
 								placeholder="exemplo@email.com"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.email}
+								defaultValue={data?.body?.payload?.email}
 								// register={register('email')}
 								// error={errors.email != null}
 								// message={errors?.email?.message}
@@ -181,7 +181,7 @@ export const Profile = () => {
 								htmlFor="registration"
 								placeholder="00123"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.registration}
+								defaultValue={data?.body?.payload?.registration}
 								// register={register('registration')}
 								// error={errors.registration != null}
 								// message={errors?.registration?.message}
@@ -193,7 +193,7 @@ export const Profile = () => {
 								label="Status:"
 								htmlFor="active"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.active === true ? 'Ativo' : 'Não ativo'}
+								defaultValue={data?.body?.payload?.active === true ? 'Ativo' : 'Não ativo'}
 								// register={register('active')}
 								// error={errors.active != null}
 								// message={errors?.active?.message}
@@ -212,7 +212,7 @@ export const Profile = () => {
 								htmlFor="street"
 								placeholder="Av. Exemplo"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.address.street}
+								defaultValue={data?.body?.payload?.address.street}
 								// register={register('street')}
 								// error={errors.street != null}
 								// message={errors?.street?.message}
@@ -225,7 +225,7 @@ export const Profile = () => {
 								htmlFor="number"
 								placeholder="567"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.address.number}
+								defaultValue={data?.body?.payload?.address.number}
 								// register={register('number')}
 								// error={errors.number != null}
 								// message={errors?.number?.message}
@@ -238,7 +238,7 @@ export const Profile = () => {
 								htmlFor="neighborhood"
 								placeholder="Jardim Tal"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.address.neighborhood}
+								defaultValue={data?.body?.payload?.address.neighborhood}
 								// register={register('neighborhood')}
 								// error={errors.neighborhood != null}
 								// message={errors?.neighborhood?.message}
@@ -251,7 +251,7 @@ export const Profile = () => {
 								htmlFor="city"
 								placeholder="São Paulo"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.address.city}
+								defaultValue={data?.body?.payload?.address.city}
 								// register={register('city')}
 								// error={errors.city != null}
 								// message={errors?.city?.message}
@@ -264,7 +264,7 @@ export const Profile = () => {
 								htmlFor="state"
 								placeholder="São Paulo"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.address.state}
+								defaultValue={data?.body?.payload?.address.state}
 								// register={register('state')}
 								// error={errors.state != null}
 								// message={errors?.state?.message}
@@ -277,7 +277,7 @@ export const Profile = () => {
 								htmlFor="cep"
 								placeholder="00000-000"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.address.cep}
+								defaultValue={data?.body?.payload?.address.cep}
 								// register={register('cep')}
 								// error={errors.cep != null}
 								// message={errors?.cep?.message}
@@ -290,7 +290,9 @@ export const Profile = () => {
 								htmlFor="complement"
 								placeholder="Próximo ao local tal"
 								readOnly={isReadOnly}
-								defaultValue={data.payload?.address.complement ? data.payload.address.complement : 'A definir'}
+								defaultValue={
+									data?.body?.payload?.address.complement ? data?.body?.payload?.address.complement : 'A definir'
+								}
 								// register={register('complement')}
 								// error={errors.complement != null}
 								// message={errors?.complement?.message}
