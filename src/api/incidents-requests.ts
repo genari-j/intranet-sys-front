@@ -35,7 +35,7 @@ export async function getIncidents(params: IncidentsParams) {
 
 export async function getIncidentById(id: string) {
 	const response = await api.get<ApiResponse<GetIncidentResponse>>(`/incidents/${id}`)
-	return response
+	return response.data
 }
 
 export async function createIncident(data: CreateIncidentsBody) {
