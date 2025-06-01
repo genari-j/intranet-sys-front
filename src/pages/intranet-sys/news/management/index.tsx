@@ -1,20 +1,23 @@
 import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+
+import type { AxiosError } from 'axios'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { getNewsFlags, getNewById, updateNew } from '~/api/news-requests'
 import { usePermissions } from '~/hooks'
+
+import type { UpdateNewsBody } from '~/@types'
+import { type SubmitHandler, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { validateUpdateNewsSchema } from '~/validators'
+import toast from 'react-hot-toast'
+
 import { newsRegister, pageTitle, handleBlur, handleFocus, responseStatus } from '~/helpers'
 
 import { CloudUpload } from '~/assets'
 import { Textfield, Textarea, Button, Spinner, Title, RequestError } from '~/components'
 import { ExplainNews, FlagsDropdown } from './components'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { useNavigate, useParams } from 'react-router-dom'
-import { type SubmitHandler, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import type { UpdateNewsBody } from '~/@types'
-import type { AxiosError } from 'axios'
-import toast from 'react-hot-toast'
-import { validateUpdateNewsSchema } from '~/validators'
 
 interface SelectedItem {
 	id?: string
@@ -23,7 +26,7 @@ interface SelectedItem {
 
 export const NewsManagement = () => {
 	const [isReadOnly, setIsReadeOnly] = useState(true)
-	pageTitle(`${isReadOnly ? 'Detalhe' : 'Edição'} de Notícias`)
+	pageTitle(`${isReadOnly ? 'Detalhe' : 'Edição'} de Notícia`)
 
 	const params = useParams()
 	const navigate = useNavigate()
@@ -82,7 +85,7 @@ export const NewsManagement = () => {
 	if (!isPending && !isError && isSuccess)
 		return (
 			<main className="w-full max-w-[900px] flex flex-col items-start">
-				<Title title={`${isReadOnly ? 'Detalhe' : 'Edição'} de Notícias`} />
+				<Title title={`${isReadOnly ? 'Detalhe' : 'Edição'} de Notícia`} />
 				{!isReadOnly && <p>Ao editar notícias, se atente ao selecionar em qual sessão ela deve aparecer 💬</p>}
 
 				<div className="flex gap-10 mt-6">
