@@ -43,7 +43,7 @@ export const Pagination = ({ totalCountPage, totalCount, page, setPage }: Pagina
 				</button>
 
 				<p className="font-medium">
-					{page} de {totalCountPage}
+					{page} de {totalCountPage !== 0 ? totalCountPage : 1}
 				</p>
 
 				<button
