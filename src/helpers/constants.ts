@@ -5,17 +5,6 @@ export const config = {
 	LOCAL_STORAGE_TOKEN: '@IntranetSys:token',
 }
 
-// USER PERMISSIONS
-export const adminRoutes = ['FAQ', 'Dashboard', 'Register News', 'Edit News']
-export const managerRoutes = ['FAQ', 'Register News']
-export const funRoutes = ['Systems']
-
-export const roles = {
-	admin: ['FAQ', 'Dashboard', 'Register News', 'Edit News'],
-	manager: ['FAQ', 'Register News'],
-	user: ['Systems'],
-}
-
 // POINTS TABLE
 export const pointsTable = ['Data:', 'Entrada:', 'Almoço:', 'Retorno:', 'Saída:']
 
@@ -68,14 +57,38 @@ export const newsRegister = [
 
 // SYSTEMS SCREEN URLs
 export const systemsURLs = [
-	{ id: 1, image: Newspaper, name: 'Notícias', link: '/' },
-	{ id: 2, image: NotebookTabs, name: 'Registro de Ponto', link: '/sistemas/registro-de-ponto' },
-	{ id: 3, image: ShoppingBasket, name: 'E-commerce', link: '/sistemas/ecommerce' },
-	{ id: 4, image: Tickets, name: 'Chamados', link: '/sistemas/chamados' },
-	{ id: 5, image: Building2, name: 'Portaria', link: '/sistemas/portaria' },
-	{ id: 6, image: ShoppingBasket, name: 'Compras', link: '/sistemas/compras' },
-	{ id: 7, image: Boxes, name: 'Estoque', link: '/sistemas/estoque' },
-	{ id: 8, image: FileText, name: 'Documentos', link: '/sistemas/documentos' },
+	{ id: 1, image: Newspaper, name: 'Notícias', link: '/', permission: 'Visualizar notícias' },
+	{
+		id: 2,
+		image: NotebookTabs,
+		name: 'Registro de Ponto',
+		link: '/sistemas/registro-de-ponto',
+		permission: 'Visualizar pontos específicos',
+	},
+	{ id: 3, image: ShoppingBasket, name: 'E-commerce', link: '/sistemas/ecommerce', permission: 'Visualizar produtos' },
+	{
+		id: 4,
+		image: Tickets,
+		name: 'Chamados',
+		link: '/sistemas/chamados',
+		permission: 'Visualizar chamados específicos',
+	},
+	{ id: 5, image: Building2, name: 'Portaria', link: '/sistemas/portaria', permission: 'Visualizar visitas' },
+	{
+		id: 6,
+		image: ShoppingBasket,
+		name: 'Compras',
+		link: '/sistemas/compras',
+		permission: 'Visualizar compras específicas',
+	},
+	{ id: 7, image: Boxes, name: 'Estoque', link: '/sistemas/estoque', permission: 'Visualizar itens' },
+	{
+		id: 8,
+		image: FileText,
+		name: 'Documentos',
+		link: '/sistemas/documentos',
+		permission: 'Visualizar documentos específicos',
+	},
 ]
 
 // Incidents Table
