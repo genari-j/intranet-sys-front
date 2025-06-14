@@ -22,19 +22,11 @@ interface User {
 		name: string
 		active: boolean
 	}
-	profile: {
+	permissions: {
 		id: string
 		name: string
-		code: string
 		description: string
-		active: boolean
-		permissions: {
-			id: string
-			permission: string
-			description: string
-			active: boolean
-		}[]
-	}
+	}[]
 	active: boolean
 	avatar: string | null
 	exp: number
