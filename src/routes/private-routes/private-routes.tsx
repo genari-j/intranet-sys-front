@@ -1,11 +1,10 @@
 import type { FC } from 'react'
 import { Navigate, Outlet, type RouteProps } from 'react-router-dom'
 import { useSession } from '~/hooks'
-import { roles } from '~/helpers'
 
-interface PrivateRouteWithPermissionsProps {
-	requiredPermissions: string[]
-	requiredRole?: keyof typeof roles
+interface RouteWithPermissionProps {
+	permission: string
+	element: React.ReactElement
 }
 
 export const PrivateRoutes: FC<RouteProps> = () => {
@@ -13,26 +12,14 @@ export const PrivateRoutes: FC<RouteProps> = () => {
 	return isSignedIn() ? <Outlet /> : <Navigate replace to="/" />
 }
 
-export const PrivateRouteWithPermissions: FC<PrivateRouteWithPermissionsProps> = ({
-	requiredPermissions,
-	requiredRole,
-}) => {
-	const { isSignedIn, userInfos } = useSession()
+export const RouteWithPermission = ({ permission, element }: RouteWithPermissionProps) => {
+	const { userInfos } = useSession()
 
-	if (!isSignedIn()) return <Navigate replace to="/" />
+	const userPermissions = userInfos?.permissions.map((p) => p.name) || []
 
-	const userPermissions = userInfos?.profile.permissions.map((perm) => perm.permission) || []
+	const hasPermission = userPermissions.includes(permission)
 
-	const checkPermissions = (userPermissions: string[], requiredPermissions: string[]) => {
-		return requiredPermissions.every((permission) => userPermissions.includes(permission))
-	}
+	if (!hasPermission) return <Navigate to="/" replace />
 
-	if (requiredRole) {
-		if (!checkPermissions(userPermissions, roles[requiredRole])) return <Navigate replace to="/" />
-	}
-
-	if (requiredPermissions.length > 0 && !checkPermissions(userPermissions, requiredPermissions))
-		return <Navigate replace to="/" />
-
-	return <Outlet />
+	return element
 }
