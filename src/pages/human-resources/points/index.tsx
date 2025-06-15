@@ -37,11 +37,15 @@ export const Points = () => {
 			{data?.body?.payload?.data.map((point) => {
 				return (
 					<Table.TR key={point.id}>
-						<Table.TD>{dateFormatter.format(new Date(point.created_at))}</Table.TD>
-						<Table.TD>{timeFormatter.format(new Date(point.entry))}</Table.TD>
-						<Table.TD>{point.lunch_out ? timeFormatter.format(new Date(point.lunch_out)) : 'A definir'}</Table.TD>
-						<Table.TD>{point.lunch_return ? timeFormatter.format(new Date(point.lunch_return)) : 'A definir'}</Table.TD>
-						<Table.TD>{point.departure ? timeFormatter.format(new Date(point.departure)) : 'A definir'}</Table.TD>
+						<Table.TD>
+							{point?.created_at ? dateFormatter.format(new Date(point.created_at)) : 'Erros ao mostrar'}
+						</Table.TD>
+						<Table.TD>{point?.entry ? timeFormatter.format(new Date(point.entry)) : 'Erros ao mostrar'}</Table.TD>
+						<Table.TD>{point?.lunch_out ? timeFormatter.format(new Date(point.lunch_out)) : 'A definir'}</Table.TD>
+						<Table.TD>
+							{point?.lunch_return ? timeFormatter.format(new Date(point.lunch_return)) : 'A definir'}
+						</Table.TD>
+						<Table.TD>{point?.departure ? timeFormatter.format(new Date(point.departure)) : 'A definir'}</Table.TD>
 					</Table.TR>
 				)
 			})}
