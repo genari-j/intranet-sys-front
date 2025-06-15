@@ -29,10 +29,10 @@ export const Incidents = () => {
 						onClick={() => handleGoToIncidentDetail(incident.id)}
 						className="cursor-pointer duration-150 hover:bg-gray7"
 					>
-						<Table.TD>{incident.code}</Table.TD>
-						<Table.TD>{reduceString(incident.title, 30)}</Table.TD>
-						<Table.TD>{incident.status.name}</Table.TD>
-						<Table.TD className={`text-${setLineColor(incident.priority.name)}`}>{incident.priority.name}</Table.TD>
+						<Table.TD>{incident?.code}</Table.TD>
+						<Table.TD>{incident?.title ? reduceString(incident.title, 30) : 'Não informado.'}</Table.TD>
+						<Table.TD>{incident?.status?.name}</Table.TD>
+						<Table.TD className={`text-${setLineColor(incident?.priority?.name)}`}>{incident?.priority?.name}</Table.TD>
 						<Table.TD>{incident?.assigned?.name ? incident.assigned.name : 'A Definir'}</Table.TD>
 						<Table.TD>{dateFormatter.format(new Date(incident.created_at))}</Table.TD>
 					</Table.TR>
