@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { useNotification } from '~/contexts'
 import { signIn } from '~/api/users-requests'
 import { api } from '~/api/config'
 import { useGeneralStates } from '~/hooks'
@@ -17,6 +18,7 @@ import { EyeOff, Eye } from '~/assets'
 export const SignIn = () => {
 	pageTitle('Entrar')
 	const navigate = useNavigate()
+	const { activateNotifications } = useNotification()
 
 	const form = useForm<SignInFormBody>({
 		resolver: zodResolver(validateSignInSchema),
@@ -31,6 +33,7 @@ export const SignIn = () => {
 			localStorage.setItem(config.LOCAL_STORAGE_TOKEN, JSON.stringify(data?.body?.payload?.token as string))
 			api.defaults.headers.common.Authorization = `Bearer ${data?.body?.payload?.token}`
 
+			activateNotifications()
 			navigate('/')
 		},
 		onError: (error: AxiosError) => responseStatus(error),
