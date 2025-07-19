@@ -5,12 +5,11 @@ import { dateFormatter, pageTitle } from '~/helpers'
 
 import { CloudUpload } from '~/assets'
 import { RequestError, Spinner, Textfield, Title } from '~/components'
-import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 export const Profile = () => {
 	// TODO: Implementar readOnly - Ficará igual o gerenciamento da notícia
-	const [isReadOnly, setIsReadeOnly] = useState(true)
+	const isReadOnly = true
 	pageTitle(`${isReadOnly ? 'Perfil Detalhe' : 'Perfil Edição'}`)
 
 	const params = useParams()
@@ -122,13 +121,13 @@ export const Profile = () => {
 							<div>
 								<span>Permissões:</span>
 
-								<div className="w-full h-screen max-h-[90px] overflow-hidden overflow-y-auto p-2 rounded-lg bg-gray7">
-									{data?.body?.payload?.profile.permissions
-										.sort((a, b) => a.permission.localeCompare(b.permission))
+								<div className="w-full h-screen max-h-[130px] overflow-hidden overflow-y-auto p-2 rounded-lg bg-gray7">
+									{data?.body?.payload?.permissions
+										.sort((a, b) => a.name.localeCompare(b.name))
 										.map((p) => {
 											return (
 												<p key={p.id}>
-													🢝 <strong className="font-semibold">{p.permission}</strong> -{' '}
+													🢝 <strong className="font-semibold">{p.name} - </strong>
 													<span className="text-sm">{p.description}</span>
 												</p>
 											)
