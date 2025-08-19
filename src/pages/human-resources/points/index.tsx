@@ -7,7 +7,7 @@ import { createPoint, getPoints } from '~/api/points-requests'
 import { pageTitle, pointsTable, dateFormatter, timeFormatter, responseStatus } from '~/helpers'
 import type { Points as PointsType } from '~/@types'
 
-import { Pagination, RequestError, Spinner, Table, TableTreatments, Title } from '~/components'
+import { Pagination, RequestError, Spinner, TableData, TableElements, Title } from '~/components'
 import { PointTrack } from './components'
 
 export const Points = () => {
@@ -32,33 +32,6 @@ export const Points = () => {
 	if (isPending) return <Spinner />
 	if (isError) return <RequestError />
 
-	const renderTableBodyRows = () => (
-		<>
-			{data?.body?.payload?.data.map((point) => {
-				return (
-					<Table.TR key={point.id}>
-						<Table.TD>
-							{point?.created_at ? dateFormatter.format(new Date(point.created_at)) : 'Erros ao mostrar'}
-						</Table.TD>
-						<Table.TD>{point?.entry ? timeFormatter.format(new Date(point.entry)) : 'Erros ao mostrar'}</Table.TD>
-						<Table.TD>{point?.lunch_out ? timeFormatter.format(new Date(point.lunch_out)) : 'A definir'}</Table.TD>
-						<Table.TD>
-							{point?.lunch_return ? timeFormatter.format(new Date(point.lunch_return)) : 'A definir'}
-						</Table.TD>
-						<Table.TD>{point?.departure ? timeFormatter.format(new Date(point.departure)) : 'A definir'}</Table.TD>
-					</Table.TR>
-				)
-			})}
-		</>
-	)
-
-	const TableBody = () => {
-		if (isPending) return TableTreatments.renderPending(5)
-		if (isError) return TableTreatments.renderError(5)
-		if (data?.body?.payload?.data.length === 0) return TableTreatments.renderNoData(5)
-		return renderTableBodyRows()
-	}
-
 	if (!isPending && !isError && isSuccess)
 		return (
 			<main className="w-full flex justify-center">
@@ -70,19 +43,31 @@ export const Points = () => {
 
 					<div className="w-full flex gap-10">
 						<div className="w-full flex flex-col">
-							<Table.Container>
-								<Table.THead>
-									<Table.TR>
-										{pointsTable.map((head) => (
-											<Table.TH key={head}>{head}</Table.TH>
-										))}
-									</Table.TR>
-								</Table.THead>
-
-								<Table.TBody>
-									<TableBody />
-								</Table.TBody>
-							</Table.Container>
+							<TableData
+								data={data?.body?.payload?.data}
+								isLoading={isPending}
+								isError={isError}
+								columns={pointsTable}
+								rowRenderer={(point) => (
+									<TableElements.TR key={point.id}>
+										<TableElements.TD>
+											{point?.created_at ? dateFormatter.format(new Date(point.created_at)) : 'Erros ao mostrar'}
+										</TableElements.TD>
+										<TableElements.TD>
+											{point?.entry ? timeFormatter.format(new Date(point.entry)) : 'Erros ao mostrar'}
+										</TableElements.TD>
+										<TableElements.TD>
+											{point?.lunch_out ? timeFormatter.format(new Date(point.lunch_out)) : 'Não definido'}
+										</TableElements.TD>
+										<TableElements.TD>
+											{point?.lunch_return ? timeFormatter.format(new Date(point.lunch_return)) : 'Não definido'}
+										</TableElements.TD>
+										<TableElements.TD>
+											{point?.departure ? timeFormatter.format(new Date(point.departure)) : 'Não definido'}
+										</TableElements.TD>
+									</TableElements.TR>
+								)}
+							/>
 
 							<Pagination
 								page={page}
