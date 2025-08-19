@@ -31,6 +31,15 @@ export const router = createBrowserRouter([
 								element: <RouteWithPermission permission="Registrar ponto" element={<Pages.Points />} />,
 							},
 							{
+								path: '/sistemas/gerenciamento-de-perfis',
+								element: (
+									<RouteWithPermission
+										permission="Visualizar gerenciamento de perfis"
+										element={<Pages.ProfileManagement />}
+									/>
+								),
+							},
+							{
 								path: '/sistemas/chamados/cadastrar',
 								element: <RouteWithPermission permission="Registrar chamados" element={<Pages.IncidentsCreate />} />,
 							},
