@@ -103,7 +103,7 @@ export const Profile = () => {
 								<span>
 									{data?.body?.payload?.created_at !== undefined
 										? dateFormatter.format(new Date(data?.body?.payload?.created_at))
-										: 'A Definir'}
+										: 'Não definido'}
 								</span>
 							</div>
 						</div>
@@ -114,7 +114,7 @@ export const Profile = () => {
 
 						<div>
 							<div className="w-full flex justify-between">
-								<span>Ocupação: A definir</span>
+								<span>Ocupação: Não definido</span>
 								<span>Departamento: {data?.body?.payload?.department.name}</span>
 							</div>
 
@@ -290,7 +290,7 @@ export const Profile = () => {
 								placeholder="Próximo ao local tal"
 								readOnly={isReadOnly}
 								defaultValue={
-									data?.body?.payload?.address.complement ? data?.body?.payload?.address.complement : 'A definir'
+									data?.body?.payload?.address.complement ? data?.body?.payload?.address.complement : 'Não definido'
 								}
 								// register={register('complement')}
 								// error={errors.complement != null}

@@ -22,7 +22,7 @@ export const Systems = () => {
 							<Link
 								key={url.id}
 								to={url.link}
-								className="w-full max-w-[150px] h-[120px] flex flex-col justify-center items-center cursor-pointer text-[15px] font-medium rounded-lg shadow-md bg-gray7 duration-150 hover:bg-gray8"
+								className="w-full max-w-[150px] h-[120px] flex flex-col justify-center items-center cursor-pointer text-[15px] text-center font-medium rounded-lg shadow-md  bg-gray7 duration-150 hover:bg-gray8"
 							>
 								<i>{<url.image size={40} />}</i>
 								{url.name}
