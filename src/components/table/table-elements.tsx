@@ -10,7 +10,7 @@ type TDProps = ComponentProps<'td'>
 
 export const Container = ({ ...props }: TableProps) => {
 	return (
-		<div className="w-full h-[461.8px]">
+		<div className="w-full min-h-[461.8px]">
 			<table className="w-full overflow-hidden border-collapse rounded-lg shadow-md" {...props} />
 		</div>
 	)
@@ -28,7 +28,7 @@ export const TR = ({ className, ...props }: TRProps) => {
 
 export const TH = ({ className, ...props }: THProps) => {
 	const combinedClassName = twMerge('font-medium uppercase py-3 px-4', className)
-	return <th className={combinedClassName} {...props} />
+	return <th scope="col" className={combinedClassName} {...props} />
 }
 
 export const TBody = ({ className, ...props }: TBodyProps) => {
