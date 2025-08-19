@@ -1,4 +1,14 @@
-import { Newspaper, NotebookTabs, ShoppingBasket, Tickets, Building2, Boxes, FileText } from '~/assets'
+import {
+	Newspaper,
+	NotebookTabs,
+	ShoppingBasket,
+	ShoppingCart,
+	Tickets,
+	Building2,
+	Boxes,
+	FileText,
+	UserCog,
+} from '~/assets'
 
 // LOGIN METHOD
 export const config = {
@@ -61,11 +71,11 @@ export const systemsURLs = [
 	{
 		id: 2,
 		image: NotebookTabs,
-		name: 'Registro de Ponto',
+		name: 'Registro Ponto',
 		link: '/sistemas/registro-de-ponto',
 		permission: 'Visualizar pontos específicos',
 	},
-	{ id: 3, image: ShoppingBasket, name: 'E-commerce', link: '/sistemas/ecommerce', permission: 'Visualizar produtos' },
+	{ id: 3, image: ShoppingCart, name: 'E-commerce', link: '/sistemas/ecommerce', permission: 'Visualizar produtos' },
 	{
 		id: 4,
 		image: Tickets,
@@ -88,6 +98,13 @@ export const systemsURLs = [
 		name: 'Documentos',
 		link: '/sistemas/documentos',
 		permission: 'Visualizar documentos específicos',
+	},
+	{
+		id: 9,
+		image: UserCog,
+		name: 'Gerenciar Perfis',
+		link: '/sistemas/gerenciamento-de-perfis',
+		permission: 'Visualizar gerenciamento de perfis',
 	},
 ]
 
