@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { io, type Socket } from 'socket.io-client'
 import { useQuery } from '@tanstack/react-query'
 
@@ -7,7 +7,7 @@ import type { Notification } from '~/@types'
 import { env } from '~/validators'
 
 interface NotificationsProviderProps {
-	children: React.ReactNode
+	children: ReactNode
 }
 
 interface NotificationContextType {
@@ -25,6 +25,7 @@ const NotificationContext = createContext<NotificationContextType>({
 export const useNotification = () => useContext(NotificationContext)
 
 export const NotificationProvider = ({ children }: NotificationsProviderProps) => {
+	const [notificationsPage, _setNotificationsPage] = useState(1)
 	const [_socket, setSocket] = useState<Socket | null>(null)
 	const [realtimeNotifications, setRealtimeNotifications] = useState<Notification[]>([])
 	const [enabled, setEnabled] = useState(false)
@@ -34,10 +35,16 @@ export const NotificationProvider = ({ children }: NotificationsProviderProps) =
 		if (userToken) setEnabled(true)
 	}, [])
 
+	const notificationsParams = {
+		page: notificationsPage,
+		read: false,
+		limit: 9999,
+	}
+
 	const { data } = useQuery({
-		queryKey: ['notifications'],
-		queryFn: () => getNotifications({ page: 1, read: false, limit: 1000 }),
-		enabled,
+		queryKey: ['notifications', notificationsParams],
+		queryFn: () => getNotifications(notificationsParams),
+		enabled: enabled,
 	})
 
 	useEffect(() => {
