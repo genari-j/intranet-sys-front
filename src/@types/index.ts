@@ -1,6 +1,7 @@
 export * from './human-resources/points/points-type'
 export * from './incidents/incidents/incidents-type'
 export * from './intranet-sys/api-response/api-response-type'
+export * from './intranet-sys/departments/departments-type'
 export * from './intranet-sys/news/news-type'
 export * from './intranet-sys/notifications/notifications-type'
 export * from './intranet-sys/users/sign-in-type'
