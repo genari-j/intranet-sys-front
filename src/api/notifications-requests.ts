@@ -11,9 +11,10 @@ type NotificationParams = {
 export async function getNotifications(params: NotificationParams = {}) {
 	const queryParams = new URLSearchParams()
 
-	if (params.page) queryParams.append('page', String(params.page))
-	if (params.limit) queryParams.append('limit', String(params.limit))
-	if (params.read !== undefined) queryParams.append('read', String(params.read))
+	for (const [key, value] of Object.entries(params)) {
+		if (value === undefined || value === null) continue
+		queryParams.append(key, String(value))
+	}
 
 	const response = await api.get<ApiResponse<GetNotificationsResponse>>(`/notifications?${queryParams.toString()}`)
 	return response.data

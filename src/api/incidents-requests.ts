@@ -18,16 +18,13 @@ type IncidentsParams = {
 	created_at?: Date
 }
 
-export async function getIncidents(params: IncidentsParams) {
+export async function getIncidents(params: IncidentsParams = {}) {
 	const queryParams = new URLSearchParams()
 
-	if (params.page) queryParams.append('page', String(params.page))
-	if (params.limit) queryParams.append('limit', String(params.limit))
-	if (params.code !== undefined) queryParams.append('code', String(params.code))
-	if (params.status_id !== undefined) queryParams.append('status_id', String(params.status_id))
-	if (params.priority_id !== undefined) queryParams.append('priority_id', String(params.priority_id))
-	if (params.assigned_id !== undefined) queryParams.append('assigned_id', String(params.assigned_id))
-	if (params.created_at !== undefined) queryParams.append('created_at', String(params.created_at))
+	for (const [key, value] of Object.entries(params)) {
+		if (value === undefined || value === null) continue
+		queryParams.append(key, value instanceof Date ? value.toISOString() : String(value))
+	}
 
 	const response = await api.get<ApiResponse<GetIncidentsResponse>>(`/incidents?${queryParams.toString()}`)
 	return response.data
