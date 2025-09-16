@@ -1,6 +1,6 @@
 export interface IncidentBaseResponse {
 	id: string
-	code: number
+	code: string
 	title: string
 	description: string
 	department_id: string
@@ -13,11 +13,20 @@ export interface IncidentBaseResponse {
 
 export interface Incident {
 	id: string
-	code: number
+	code: string
 	title: string
-	priority: { id: string; name: string }
-	assigned: { id: string; name: string }
-	status: { id: string; name: string }
+	priority: {
+		id: string
+		name: string
+	}
+	assigned: {
+		id: string
+		name: string
+	}
+	status: {
+		id: string
+		name: string
+	}
 	created_at: Date
 }
 
@@ -28,20 +37,48 @@ export interface IncidentById {
 	deadline: Date | null
 	title: string
 	description: string
-	register: { id: string; name: string }
-	category: { id: string; name: string }
-	priority: { id: string; name: string }
-	department: { id: string; name: string }
-	assigned: { id: string; name: string }
-	status: { id: string; name: string }
+	register: {
+		id: string
+		name: string
+	}
+	category: {
+		id: string
+		name: string
+	}
+	priority: {
+		id: string
+		name: string
+	}
+	department: {
+		id: string
+		name: string
+	}
+	assigned: {
+		id: string
+		name: string
+	}
+	status: {
+		id: string
+		name: string
+	}
 	avatars: {
 		id: string
 		avatar: string
 	}[]
 	logs: {
 		id: string
-		title: string
-		description: string
+		field: string
+		old_value: string
+		new_value: string
+		changed_by: {
+			id: string
+			name: string
+			department: {
+				id: string
+				name: string
+			}
+		}
+		created_at: Date
 	}[]
 	created_at: Date
 	updated_at: Date
