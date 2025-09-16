@@ -22,6 +22,8 @@ import {
 	OctagonAlert,
 } from 'lucide-react'
 
+import Logo from './images/logo.png'
+
 export {
 	ChevronsLeft,
 	ChevronsRight,
@@ -44,4 +46,5 @@ export {
 	Bell,
 	Clock,
 	OctagonAlert,
+	Logo,
 }
