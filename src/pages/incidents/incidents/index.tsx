@@ -14,10 +14,12 @@ export const Incidents = () => {
 	const { handleGoToIncidentDetail, handleGoToIncidentCreate } = useRouting()
 
 	const [page, setPage] = useState(1)
-
+	const incidentsParams = {
+		page: page,
+	}
 	const { data, isPending, isError, isSuccess } = useQuery({
-		queryKey: ['points', page],
-		queryFn: () => getIncidents({ page }),
+		queryKey: ['points', incidentsParams],
+		queryFn: () => getIncidents(incidentsParams),
 	})
 
 	if (isPending) return <Spinner />
@@ -29,7 +31,6 @@ export const Incidents = () => {
 				<div className="w-full max-w-[1000px] flex flex-col items-start gap-4 px-4">
 					<div className="w-full flex justify-between items-center">
 						<Title title="Chamados" />
-
 						<Button description="+ Novo" onClick={handleGoToIncidentCreate} />
 					</div>
 
